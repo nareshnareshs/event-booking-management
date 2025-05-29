@@ -1,13 +1,28 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LandingPage from '../components/LandingPage';
+import Login from '../components/Login';
+import Signup from '../components/Signup';
+import UserDashboard from '../components/UserDashboard';
+import AdminDashboard from '../components/AdminDashboard';
+import BookingForm from '../components/BookingForm';
+import { AuthProvider } from '../contexts/AuthContext';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <AuthProvider>
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/dashboard" element={<UserDashboard />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/book" element={<BookingForm />} />
+        </Routes>
       </div>
-    </div>
+    </AuthProvider>
   );
 };
 
